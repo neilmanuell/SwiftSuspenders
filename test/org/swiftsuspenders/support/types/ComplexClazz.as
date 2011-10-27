@@ -26,7 +26,7 @@ package org.swiftsuspenders.support.types
 	{
 		[Inject]
 		public var value:Clazz;
-		
+
 		public function ComplexClazz()
 		{
 		}

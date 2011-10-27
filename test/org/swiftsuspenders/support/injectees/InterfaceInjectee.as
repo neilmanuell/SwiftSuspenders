@@ -28,7 +28,7 @@ package org.swiftsuspenders.support.injectees
 	{
 		[Inject]
 		public var property:Interface;
-		
+
 		public function InterfaceInjectee()
 		{
 		}

@@ -29,7 +29,7 @@ package org.swiftsuspenders.support.injectees
 	{
 		private var m_dependency : Clazz;
 		private var m_dependency2 : Interface;
-		
+
 		[Inject]
 		public function setDependencies(dependency:Clazz, dependency2:Interface):void
 		{
@@ -44,7 +44,7 @@ package org.swiftsuspenders.support.injectees
 		{
 			return m_dependency2;
 		}
-		
+
 		public function TwoParametersMethodInjectee()
 		{
 		}

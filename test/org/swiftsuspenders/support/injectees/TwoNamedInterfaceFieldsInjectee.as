@@ -23,14 +23,14 @@
 package org.swiftsuspenders.support.injectees
 {
 	import org.swiftsuspenders.support.types.Interface;
-	
+
 	public class TwoNamedInterfaceFieldsInjectee
 	{
 		[Inject(named="Name1")]
 		public var property1:Interface;
 		[Inject(named="Name2")]
 		public var property2:Interface;
-		
+
 		public function TwoNamedInterfaceFieldsInjectee()
 		{
 		}

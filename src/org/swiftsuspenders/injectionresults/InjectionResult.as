@@ -17,7 +17,7 @@ package org.swiftsuspenders.injectionresults
 		public function InjectionResult()
 		{
 		}
-		
+
 		public function getResponse(injector : Injector) : Object
 		{
 			return null;

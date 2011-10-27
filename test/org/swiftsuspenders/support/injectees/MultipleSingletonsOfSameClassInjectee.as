@@ -31,7 +31,7 @@ package org.swiftsuspenders.support.injectees
 		public var property1:Interface;
 		[Inject]
 		public var property2:Interface2;
-		
+
 		public function MultipleSingletonsOfSameClassInjectee()
 		{
 		}

@@ -1,16 +1,16 @@
 /*
  * Copyright (c) 2009 the original author or authors
- * 
- * Permission is hereby granted to use, modify, and distribute this file 
+ *
+ * Permission is hereby granted to use, modify, and distribute this file
  * in accordance with the terms of the license agreement accompanying it.
  */
 
 package org.swiftsuspenders.injectionpoints
 {
 	import flash.utils.describeType;
-	
+
 	import org.swiftsuspenders.Injector;
-	
+
 	public class ConstructorInjectionPoint extends MethodInjectionPoint
 	{
 		/*******************************************************************************************
@@ -19,17 +19,17 @@ package org.swiftsuspenders.injectionpoints
 		public function ConstructorInjectionPoint(node : XML, clazz : Class, injector : Injector)
 		{
 			/*
-			  In many cases, the flash player doesn't give us type information for constructors until 
-			  the class has been instantiated at least once. Therefore, we do just that if we don't get 
+			  In many cases, the flash player doesn't give us type information for constructors until
+			  the class has been instantiated at least once. Therefore, we do just that if we don't get
 			  type information for at least one parameter.
-			 */ 
+			 */
 			if (node.parameter.(@type == '*').length() == node.parameter.@type.length())
 			{
 				createDummyInstance(node, clazz);
 			}
 			super(node, injector);
 		}
-		
+
 		override public function applyInjection(target : Object, injector : Injector) : Object
 		{
 			var p : Array = gatherParameterValues(target, injector);
@@ -58,10 +58,10 @@ package org.swiftsuspenders.injectionpoints
 		{
 			var nameArgs : XMLList = node.parent().metadata.(@name == 'Inject').arg.(@key == 'name');
 			methodName = 'constructor';
-			
+
 			gatherParameters(node, nameArgs, injector);
 		}
-		
+
 		/*******************************************************************************************
 		*								private methods											   *
 		*******************************************************************************************/

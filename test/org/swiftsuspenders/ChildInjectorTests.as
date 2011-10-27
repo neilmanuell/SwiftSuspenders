@@ -1,14 +1,14 @@
 /*
 * Copyright (c) 2009 the original author or authors
-* 
-* Permission is hereby granted to use, modify, and distribute this file 
+*
+* Permission is hereby granted to use, modify, and distribute this file
 * in accordance with the terms of the license agreement accompanying it.
 */
 
 package org.swiftsuspenders
 {
 	import flexunit.framework.Assert;
-	
+
 	import org.swiftsuspenders.support.injectees.ClassInjectee;
 	import org.swiftsuspenders.support.injectees.childinjectors.InjectorCopyRule;
 	import org.swiftsuspenders.support.injectees.childinjectors.InjectorInjectee;
@@ -24,22 +24,22 @@ package org.swiftsuspenders
 	public class ChildInjectorTests
 	{
 		protected var injector:Injector;
-		
+
 		[Before]
 		public function runBeforeEachTest():void
 		{
 			injector = new Injector();
 		}
-		
+
 		[Test]
 		public function injectorCreatesChildInjector() : void
 		{
 			Assert.assertTrue(true);
 			var childInjector : Injector = injector.createChildInjector();
-			Assert.assertTrue('injector.createChildInjector should return an injector', 
+			Assert.assertTrue('injector.createChildInjector should return an injector',
 				childInjector is Injector);
 		}
-		
+
 		[Test]
 		public function injectorUsesChildInjectorForSpecifiedRule() : void
 		{
@@ -56,12 +56,12 @@ package org.swiftsuspenders
 			rightChildInjector.mapClass(RobotAnkle, RobotAnkle);
 			rightChildInjector.mapClass(RobotFoot, RightRobotFoot);
 			rightFootRule.setInjector(rightChildInjector);
-			
+
 			var robotBody : RobotBody = injector.instantiate(RobotBody);
-			
-			Assert.assertTrue('Right RobotLeg should have a RightRobotFoot', 
+
+			Assert.assertTrue('Right RobotLeg should have a RightRobotFoot',
 				robotBody.rightLeg.ankle.foot is RightRobotFoot);
-			Assert.assertTrue('Left RobotLeg should have a LeftRobotFoot', 
+			Assert.assertTrue('Left RobotLeg should have a LeftRobotFoot',
 				robotBody.leftLeg.ankle.foot is LeftRobotFoot);
 		}
 
@@ -131,27 +131,27 @@ package org.swiftsuspenders
 				'injectee.property isn\' overwritten by second injection through child injector',
 				injectee.property, class1);
 		}
-        
+
         [Test]
         public function childInjectorHasMappingWhenExistsOnParentInjector():void
         {
             var childInjector : Injector = injector.createChildInjector();
             var class1 : Clazz = new Clazz();
-            injector.mapValue(Clazz, class1);  
-            
+            injector.mapValue(Clazz, class1);
+
             Assert.assertTrue('Child injector should return true for hasMapping that exists on parent injector',
                 childInjector.hasMapping(Clazz));
         }
-        
+
         [Test]
         public function childInjectorDoesNotHaveMappingWhenDoesNotExistOnParentInjector():void
         {
             var childInjector : Injector = injector.createChildInjector();
-            
+
             Assert.assertFalse('Child injector should not return true for hasMapping that does not exists on parent injector',
                 childInjector.hasMapping(Clazz));
-        }  
-        
+        }
+
         [Test]
         public function grandChildInjectorSuppliesInjectionFromAncestor():void
         {
@@ -161,11 +161,11 @@ package org.swiftsuspenders
             injector.mapSingleton(Clazz);
             childInjector = injector.createChildInjector();
             grandChildInjector = childInjector.createChildInjector();
-            
+
             grandChildInjector.injectInto(injectee);
-            
-            Assert.assertTrue("injectee has been injected with Clazz instance from grandChildInjector", 
-                injectee.property is Clazz); 
+
+            Assert.assertTrue("injectee has been injected with Clazz instance from grandChildInjector",
+                injectee.property is Clazz);
         }
 
 		[Test]

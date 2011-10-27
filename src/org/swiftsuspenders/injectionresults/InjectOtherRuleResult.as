@@ -16,8 +16,8 @@ package org.swiftsuspenders.injectionresults
 		 *								private properties										   *
 		 *******************************************************************************************/
 		private var m_rule : InjectionConfig;
-		
-		
+
+
 		/*******************************************************************************************
 		 *								public methods											   *
 		 *******************************************************************************************/
@@ -25,7 +25,7 @@ package org.swiftsuspenders.injectionresults
 		{
 			m_rule = rule;
 		}
-		
+
 		override public function getResponse(injector : Injector) : Object
 		{
 			return m_rule.getResponse(injector);

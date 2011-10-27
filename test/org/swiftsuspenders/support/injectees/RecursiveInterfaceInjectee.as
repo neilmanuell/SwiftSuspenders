@@ -6,7 +6,7 @@ package org.swiftsuspenders.support.injectees
 	{
 		[Inject]
 		public var interfaceInjectee : InterfaceInjectee;
-		
+
 		public function RecursiveInterfaceInjectee()
 		{
 		}

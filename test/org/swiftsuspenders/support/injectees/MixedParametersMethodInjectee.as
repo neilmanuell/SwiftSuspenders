@@ -30,7 +30,7 @@ package org.swiftsuspenders.support.injectees
 		private var m_dependency : Clazz;
 		private var m_dependency2 : Clazz;
 		private var m_dependency3 : Interface;
-		
+
 		[Inject(name='namedDep', name='', name='namedDep2')]
 		public function setDependencies(dependency:Clazz, dependency2:Clazz, dependency3:Interface):void
 		{
@@ -50,7 +50,7 @@ package org.swiftsuspenders.support.injectees
 		{
 			return m_dependency3;
 		}
-		
+
 		public function MixedParametersMethodInjectee()
 		{
 		}

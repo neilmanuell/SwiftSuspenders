@@ -23,9 +23,9 @@
 package org.swiftsuspenders
 {
 	import flexunit.framework.Assert;
-	
+
 	import mx.collections.ArrayCollection;
-	
+
 	import org.swiftsuspenders.support.injectees.ClassInjectee;
 	import org.swiftsuspenders.support.injectees.ComplexClassInjectee;
 	import org.swiftsuspenders.support.injectees.InterfaceInjectee;
@@ -55,17 +55,17 @@ package org.swiftsuspenders
 	import org.swiftsuspenders.support.types.ComplexClazz;
 	import org.swiftsuspenders.support.types.Interface;
 	import org.swiftsuspenders.support.types.Interface2;
-	
+
 	public class InjectorTests
 	{
 		protected var injector:Injector;
-		
+
 		[Before]
 		public function runBeforeEachTest():void
 		{
 			injector = new Injector();
 		}
-		
+
 		[Test]
 		public function unbind():void
 		{
@@ -82,7 +82,7 @@ package org.swiftsuspenders
 			}
 			Assert.assertEquals("Property should not be injected", null, injectee.property);
 		}
-		
+
 		[Test]
 		public function bindValue():void
 		{
@@ -95,7 +95,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee2);
 			Assert.assertStrictlyEquals("Injected values should be equal", injectee.property, injectee2.property );
 		}
-		
+
 		[Test]
 		public function bindValueByInterface():void
 		{
@@ -105,7 +105,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee);
 			Assert.assertStrictlyEquals("Value should have been injected", value, injectee.property );
 		}
-		
+
 		[Test]
 		public function bindNamedValue():void
 		{
@@ -145,7 +145,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee);
 			Assert.assertNull('value shouldn\'t have been injected into', value.property);
 		}
-		
+
 		[Test]
 		public function bindMultipleInterfacesToOneSingletonClass():void
 		{
@@ -157,7 +157,7 @@ package org.swiftsuspenders
 			Assert.assertNotNull("Singleton Value for 'property2' should have been injected", injectee.property2 );
 			Assert.assertFalse("Singleton Values 'property1' and 'property2' should not be identical", injectee.property1 == injectee.property2 );
 		}
-		
+
 		[Test]
 		public function bindClass():void
 		{
@@ -181,7 +181,7 @@ package org.swiftsuspenders
 			Assert.assertNotNull("Complex Value should have been injected", injectee.property  );
 			Assert.assertStrictlyEquals("Nested value should have been injected", value, injectee.property.value );
 		}
-		
+
 		[Test]
 		public function bindClassByInterface():void
 		{
@@ -190,7 +190,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee);
 			Assert.assertNotNull("Instance of Class should have been injected", injectee.property );
 		}
-		
+
 		[Test]
 		public function bindNamedClass():void
 		{
@@ -199,7 +199,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee);
 			Assert.assertNotNull("Instance of named Class should have been injected", injectee.property );
 		}
-		
+
 		[Test]
 		public function bindNamedClassByInterface():void
 		{
@@ -208,7 +208,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee);
 			Assert.assertNotNull("Instance of named Class should have been injected", injectee.property );
 		}
-		
+
 		[Test]
 		public function bindSingleton():void
 		{
@@ -220,7 +220,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee2);
 			Assert.assertStrictlyEquals("Injected values should be equal", injectee.property, injectee2.property );
 		}
-		
+
 		[Test]
 		public function bindSingletonOf():void
 		{
@@ -232,7 +232,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee2);
 			Assert.assertStrictlyEquals("Injected values should be equal", injectee.property, injectee2.property );
 		}
-		
+
 		[Test]
 		public function bindDifferentlyNamedSingletonsBySameInterface():void
 		{
@@ -244,7 +244,7 @@ package org.swiftsuspenders
 			Assert.assertTrue('Property "property2" should be of type "Clazz2"', injectee.property2 is Clazz2);
 			Assert.assertFalse('Properties "property1" and "property2" should have received different singletons', injectee.property1 == injectee.property2);
 		}
-		
+
 		[Test]
 		public function performSetterInjection():void
 		{
@@ -256,7 +256,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee2);
 			Assert.assertFalse("Injected values should be different", injectee.property == injectee2.property );
 		}
-		
+
 		[Test]
 		public function performMethodInjectionWithOneParameter():void
 		{
@@ -268,7 +268,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee2);
 			Assert.assertFalse("Injected values should be different", injectee.getDependency() == injectee2.getDependency() );
 		}
-		
+
 		[Test]
 		public function performMethodInjectionWithOneNamedParameter():void
 		{
@@ -280,7 +280,7 @@ package org.swiftsuspenders
 			injector.injectInto(injectee2);
 			Assert.assertFalse("Injected values should be different", injectee.getDependency() == injectee2.getDependency() );
 		}
-		
+
 		[Test]
 		public function performMethodInjectionWithTwoParameters():void
 		{
@@ -295,7 +295,7 @@ package org.swiftsuspenders
 			Assert.assertFalse("Injected values should be different", injectee.getDependency() == injectee2.getDependency() );
 			Assert.assertFalse("Injected values for Interface should be different", injectee.getDependency2() == injectee2.getDependency2() );
 		}
-		
+
 		[Test]
 		public function performMethodInjectionWithTwoNamedParameters():void
 		{
@@ -310,7 +310,7 @@ package org.swiftsuspenders
 			Assert.assertFalse("Injected values should be different", injectee.getDependency() == injectee2.getDependency() );
 			Assert.assertFalse("Injected values for Interface should be different", injectee.getDependency2() == injectee2.getDependency2() );
 		}
-		
+
 		[Test]
 		public function performMethodInjectionWithMixedParameters():void
 		{
@@ -328,7 +328,7 @@ package org.swiftsuspenders
 			Assert.assertFalse("Injected values for unnamed Clazz should be different", injectee.getDependency2() == injectee2.getDependency2() );
 			Assert.assertFalse("Injected values for named Interface should be different", injectee.getDependency3() == injectee2.getDependency3() );
 		}
-		
+
 		[Test]
 		public function performConstructorInjectionWithOneParameter():void
 		{
@@ -336,7 +336,7 @@ package org.swiftsuspenders
 			var injectee:OneParameterConstructorInjectee = injector.instantiate(OneParameterConstructorInjectee);
 			Assert.assertNotNull("Instance of Class should have been injected for Clazz parameter", injectee.getDependency() );
 		}
-		
+
 		[Test]
 		public function performConstructorInjectionWithTwoParameters():void
 		{
@@ -346,7 +346,7 @@ package org.swiftsuspenders
 			Assert.assertNotNull("Instance of Class should have been injected for named Clazz parameter", injectee.getDependency());
 			Assert.assertEquals("The String 'stringDependency' should have been injected for String parameter", injectee.getDependency2(), 'stringDependency');
 		}
-		
+
 		[Test]
 		public function performConstructorInjectionWithOneNamedParameter():void
 		{
@@ -354,7 +354,7 @@ package org.swiftsuspenders
 			var injectee:OneNamedParameterConstructorInjectee = injector.instantiate(OneNamedParameterConstructorInjectee);
 			Assert.assertNotNull("Instance of Class should have been injected for named Clazz parameter", injectee.getDependency() );
 		}
-		
+
 		[Test]
 		public function performXMLConfiguredConstructorInjectionWithOneNamedParameter():void
 		{
@@ -371,7 +371,7 @@ package org.swiftsuspenders
 			var injectee:OneNamedParameterConstructorInjectee = injector.instantiate(OneNamedParameterConstructorInjectee);
 			Assert.assertNotNull("Instance of Class should have been injected for named Clazz parameter", injectee.getDependency() );
 		}
-		
+
 		[Test]
 		public function performConstructorInjectionWithTwoNamedParameter():void
 		{
@@ -381,7 +381,7 @@ package org.swiftsuspenders
 			Assert.assertNotNull("Instance of Class should have been injected for named Clazz parameter", injectee.getDependency());
 			Assert.assertEquals("The String 'stringDependency' should have been injected for named String parameter", injectee.getDependency2(), 'stringDependency');
 		}
-		
+
 		[Test]
 		public function performConstructorInjectionWithMixedParameters():void
 		{
@@ -393,7 +393,7 @@ package org.swiftsuspenders
 			Assert.assertNotNull("Instance of Class should have been injected for unnamed Clazz parameter", injectee.getDependency2() );
 			Assert.assertNotNull("Instance of Class should have been injected for Interface", injectee.getDependency3() );
 		}
-		
+
 		[Test]
 		public function performNamedArrayInjection():void
 		{
@@ -403,7 +403,7 @@ package org.swiftsuspenders
 			Assert.assertNotNull("Instance 'ac' should have been injected for named ArrayCollection parameter", injectee.ac );
 			Assert.assertEquals("Instance field 'ac' should be identical to local variable 'ac'", ac, injectee.ac);
 		}
-		
+
 		[Test]
 		public function performMappedRuleInjection():void
 		{
@@ -412,7 +412,7 @@ package org.swiftsuspenders
 			var injectee:MultipleSingletonsOfSameClassInjectee = injector.instantiate(MultipleSingletonsOfSameClassInjectee);
 			Assert.assertEquals("Instance field 'property1' should be identical to Instance field 'property2'", injectee.property1, injectee.property2);
 		}
-		
+
 		[Test]
 		public function performMappedNamedRuleInjection():void
 		{
@@ -425,14 +425,14 @@ package org.swiftsuspenders
 			Assert.assertEquals("Instance field 'property1' should be identical to Instance field 'namedProperty1'", injectee.property1, injectee.namedProperty1);
 			Assert.assertEquals("Instance field 'property1' should be identical to Instance field 'namedProperty2'", injectee.property1, injectee.namedProperty2);
 		}
-		
+
 		[Test]
 		public function performInjectionIntoValueWithRecursiveSingeltonDependency():void
 		{
 			var valueInjectee : InterfaceInjectee = new InterfaceInjectee();
 			injector.mapValue(InterfaceInjectee, valueInjectee);
 			injector.mapSingletonOf(Interface, RecursiveInterfaceInjectee);
-			
+
 			injector.injectInto(valueInjectee);
 //			Assert.assertEquals("Instance field 'property1' should be identical to Instance field 'property2'", injectee.property1, injectee.property2);
 //			Assert.assertEquals("Instance field 'property1' should be identical to Instance field 'namedProperty1'", injectee.property1, injectee.namedProperty1);
@@ -448,21 +448,21 @@ package org.swiftsuspenders
 			injector.injectInto(injectee);
 			Assert.assertEquals('injected value should be indentical to mapped value', injectee.property, value);
 		}
-		
+
 		[Test(expects="org.swiftsuspenders.InjectorError")]
 		public function haltOnMissingDependency():void
 		{
 			var injectee:InterfaceInjectee = new InterfaceInjectee();
 			injector.injectInto(injectee);
 		}
-		
+
 		[Test(expects="org.swiftsuspenders.InjectorError")]
 		public function haltOnMissingNamedDependency():void
 		{
 			var injectee:NamedClassInjectee = new NamedClassInjectee();
 			injector.injectInto(injectee);
 		}
-		
+
 		[Test]
 		public function postConstructIsCalled():void
 		{
@@ -470,7 +470,7 @@ package org.swiftsuspenders
 			var value:Clazz = new Clazz();
 			injector.mapValue(Clazz, value);
 			injector.injectInto(injectee);
-				
+
 			Assert.assertTrue(injectee.someProperty);
 		}
 

@@ -27,7 +27,7 @@ package org.swiftsuspenders.support.injectees
 	public class OneNamedParameterMethodInjectee
 	{
 		private var m_dependency : Clazz;
-		
+
 		[Inject(name='namedDep')]
 		public function setDependency(dependency:Clazz):void
 		{
@@ -37,7 +37,7 @@ package org.swiftsuspenders.support.injectees
 		{
 			return m_dependency;
 		}
-		
+
 		public function OneNamedParameterMethodInjectee()
 		{
 		}

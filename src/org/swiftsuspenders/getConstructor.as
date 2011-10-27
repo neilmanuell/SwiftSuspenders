@@ -10,7 +10,7 @@ package org.swiftsuspenders
 	import flash.utils.Proxy;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
-	
+
 	internal function getConstructor(value : Object) : Class
 	{
 		/*

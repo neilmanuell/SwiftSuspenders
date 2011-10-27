@@ -31,7 +31,7 @@ package org.swiftsuspenders.support.injectees
 		private var m_dependency : Clazz;
 		private var m_dependency2 : Clazz;
 		private var m_dependency3 : Interface;
-		
+
 		public function getDependency() : Clazz
 		{
 			return m_dependency;
@@ -44,7 +44,7 @@ package org.swiftsuspenders.support.injectees
 		{
 			return m_dependency3;
 		}
-		
+
 		public function MixedParametersConstructorInjectee(dependency:Clazz, dependency2:Clazz, dependency3:Interface):void
 		{
 			m_dependency = dependency;

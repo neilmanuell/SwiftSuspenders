@@ -227,10 +227,10 @@ package
 	{
 		[Inject]
 		public var firstDepency : MovieClip;
-		
+
 		[Inject(name="currentTime")]
 		public var secondDependency : Date;
-		
+
 		[Inject]
 		public function set thirdDependency(value : Sprite) : void
 		{
@@ -264,19 +264,19 @@ package
 	{
 		private var myMovieClip : MovieClip;
 		private var currentTime : Date;
-		
+
 		[Inject]
 		public function setFirstDependency(injection : MovieClip) : void
 		{
 			myMovieClip = injection;
 		}
-		
+
 		[Inject(name="currentTime")]
 		public function setSecondDependency(injection : Date) : void
 		{
 			currentTime = injection;
 		}
-		
+
 		[Inject(name='', name="currentTime")]
 		public function setMultipleDependencies(movieClip : MovieClip, date : Date) : void
 		{
@@ -312,7 +312,7 @@ package
 	{
 		private var myMovieClip : MovieClip;
 		private var currentTime : Date;
-		
+
 		public function MyDependentClass(movieClip : MovieClip, date : Date)
 		{
 			myMovieClip = movieClip;

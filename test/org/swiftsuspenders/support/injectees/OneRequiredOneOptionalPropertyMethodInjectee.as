@@ -24,12 +24,12 @@ package org.swiftsuspenders.support.injectees
 {
 	import org.swiftsuspenders.support.types.Clazz;
 	import org.swiftsuspenders.support.types.Interface;
-	
+
 	public class OneRequiredOneOptionalPropertyMethodInjectee
 	{
 		private var m_dependency : Clazz;
 		private var m_dependency2 : Interface;
-		
+
 		[Inject]
 		public function setDependencies(dependency:Clazz, dependency2:Interface = null):void
 		{
@@ -44,7 +44,7 @@ package org.swiftsuspenders.support.injectees
 		{
 			return m_dependency2;
 		}
-		
+
 		public function OneRequiredOneOptionalPropertyMethodInjectee()
 		{
 		}
