@@ -32,7 +32,7 @@ package org.swiftsuspenders.suites
 	import org.swiftsuspenders.injectionpoints.NoParamsConstructorInjectionPointTests;
 	import org.swiftsuspenders.injectionpoints.PostConstructInjectionPointTests;
 	import org.swiftsuspenders.injectionpoints.PropertyInjectionPointTests;
-	
+
 	[Suite]
 	[RunWith("org.flexunit.runners.Suite")]
 	public class SwiftSuspendersTestSuite

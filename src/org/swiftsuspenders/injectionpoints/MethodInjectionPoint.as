@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2009 the original author or authors
- * 
- * Permission is hereby granted to use, modify, and distribute this file 
+ *
+ * Permission is hereby granted to use, modify, and distribute this file
  * in accordance with the terms of the license agreement accompanying it.
  */
 
@@ -9,7 +9,7 @@ package org.swiftsuspenders.injectionpoints
 {
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
-	
+
 	import org.swiftsuspenders.InjectionConfig;
 	import org.swiftsuspenders.Injector;
 	import org.swiftsuspenders.InjectorError;
@@ -22,8 +22,8 @@ package org.swiftsuspenders.injectionpoints
 		protected var methodName : String;
 		protected var m_injectionConfigs : Array;
 		protected var requiredParameters : int = 0;
-		
-		
+
+
 		/*******************************************************************************************
 		*								public methods											   *
 		*******************************************************************************************/
@@ -31,7 +31,7 @@ package org.swiftsuspenders.injectionpoints
 		{
 			super(node, injector);
 		}
-		
+
 		override public function applyInjection(target : Object, injector : Injector) : Object
 		{
 			var parameters : Array = gatherParameterValues(target, injector);
@@ -49,10 +49,10 @@ package org.swiftsuspenders.injectionpoints
 			var nameArgs : XMLList = node.arg.(@key == 'name');
 			var methodNode : XML = node.parent();
 			methodName = methodNode.@name.toString();
-			
+
 			gatherParameters(methodNode, nameArgs, injector);
 		}
-		
+
 		protected function gatherParameters(
 			methodNode : XML, nameArgs : XMLList, injector : Injector) : void
 		{
@@ -72,7 +72,7 @@ package org.swiftsuspenders.injectionpoints
 					if (parameter.@optional.toString() == 'false')
 					{
 						//TODO: Find a way to trace name of affected class here
-						throw new Error('Error in method definition of injectee. Required ' + 
+						throw new Error('Error in method definition of injectee. Required ' +
 							'parameters can\'t have type "*".');
 					}
 					else
@@ -92,7 +92,7 @@ package org.swiftsuspenders.injectionpoints
 				i++;
 			}
 		}
-		
+
 		protected function gatherParameterValues(target : Object, injector : Injector) : Array
 		{
 			var parameters : Array = [];
@@ -108,12 +108,12 @@ package org.swiftsuspenders.injectionpoints
 						break;
 					}
 					throw(new InjectorError(
-						'Injector is missing a rule to handle injection into target ' + target + 
-						'. Target dependency: ' + getQualifiedClassName(config.request) + 
+						'Injector is missing a rule to handle injection into target ' + target +
+						'. Target dependency: ' + getQualifiedClassName(config.request) +
 						', method: ' + methodName + ', parameter: ' + (i + 1)
 					));
 				}
-				
+
 				parameters[i] = injection;
 			}
 			return parameters;

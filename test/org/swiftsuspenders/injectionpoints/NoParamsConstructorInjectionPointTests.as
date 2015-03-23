@@ -9,7 +9,7 @@ package org.swiftsuspenders.injectionpoints
 		public function noParamsConstructorInjectionPointIsConstructed():void
 		{
 			var injectionPoint:NoParamsConstructorInjectionPoint = new NoParamsConstructorInjectionPoint();
-			
+
 			Assert.assertTrue("Class doesn't do anything except get constructed", injectionPoint is NoParamsConstructorInjectionPoint);
 		}
 	}

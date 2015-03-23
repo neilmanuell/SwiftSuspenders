@@ -27,12 +27,12 @@ package org.swiftsuspenders.support.injectees
 	public class OneParameterConstructorInjectee
 	{
 		private var m_dependency : Clazz;
-		
+
 		public function getDependency() : Clazz
 		{
 			return m_dependency;
 		}
-		
+
 		public function OneParameterConstructorInjectee(dependency:Clazz)
 		{
 			m_dependency = dependency;

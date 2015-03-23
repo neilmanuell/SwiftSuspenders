@@ -28,7 +28,7 @@ package org.swiftsuspenders.support.injectees
 	{
 		[Inject]
 		public var property:ComplexClazz;
-		
+
 		public function ComplexClassInjectee()
 		{
 		}

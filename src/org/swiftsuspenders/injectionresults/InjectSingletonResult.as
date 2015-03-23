@@ -1,7 +1,7 @@
 /*
 * Copyright (c) 2009 the original author or authors
-* 
-* Permission is hereby granted to use, modify, and distribute this file 
+*
+* Permission is hereby granted to use, modify, and distribute this file
 * in accordance with the terms of the license agreement accompanying it.
 */
 
@@ -16,8 +16,8 @@ package org.swiftsuspenders.injectionresults
 		 *******************************************************************************************/
 		private var m_responseType : Class;
 		private var m_response : Object;
-		
-		
+
+
 		/*******************************************************************************************
 		 *								public methods											   *
 		 *******************************************************************************************/
@@ -25,13 +25,13 @@ package org.swiftsuspenders.injectionresults
 		{
 			m_responseType = responseType;
 		}
-		
+
 		override public function getResponse(injector : Injector) : Object
 		{
 			return m_response ||= createResponse(injector);
 		}
-		
-		
+
+
 		/*******************************************************************************************
 		 *								private methods											   *
 		 *******************************************************************************************/

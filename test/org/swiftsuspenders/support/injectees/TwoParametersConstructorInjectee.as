@@ -28,7 +28,7 @@ package org.swiftsuspenders.support.injectees
 	{
 		private var m_dependency : Clazz;
 		private var m_dependency2 : String;
-		
+
 		public function getDependency() : Clazz
 		{
 			return m_dependency;
@@ -37,7 +37,7 @@ package org.swiftsuspenders.support.injectees
 		{
 			return m_dependency2;
 		}
-		
+
 		public function TwoParametersConstructorInjectee(dependency:Clazz, dependency2:String)
 		{
 			m_dependency = dependency;

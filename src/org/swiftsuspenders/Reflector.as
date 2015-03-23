@@ -28,7 +28,7 @@ package org.swiftsuspenders
 			superclass : Class, application : ApplicationDomain = null) : Boolean
 		{
             var actualClass : Class;
-			
+
             if (classOrClassName is Class)
             {
                 actualClass = Class(classOrClassName);

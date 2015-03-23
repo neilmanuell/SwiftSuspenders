@@ -27,7 +27,7 @@ package org.swiftsuspenders.support.injectees
 	public class NamedArrayCollectionInjectee
 	{
 		[Inject(name="namedCollection")] public var ac:ArrayCollection;
-		
+
 		public function NamedArrayCollectionInjectee()
 		{
 		}

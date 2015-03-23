@@ -23,12 +23,12 @@
 package org.swiftsuspenders.support.injectees
 {
 	import org.swiftsuspenders.support.types.Clazz;
-	
+
 	public class TwoOptionalParametersConstructorInjectee
 	{
 		private var m_dependency : Clazz;
 		private var m_dependency2 : String;
-		
+
 		public function getDependency() : Clazz
 		{
 			return m_dependency;
@@ -37,7 +37,7 @@ package org.swiftsuspenders.support.injectees
 		{
 			return m_dependency2;
 		}
-		
+
 		public function TwoOptionalParametersConstructorInjectee(dependency:Clazz = null, dependency2:String = null)
 		{
 			m_dependency = dependency;

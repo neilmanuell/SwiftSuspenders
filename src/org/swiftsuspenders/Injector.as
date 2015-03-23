@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2009-2010 the original author or authors
- * 
- * Permission is hereby granted to use, modify, and distribute this file 
+ *
+ * Permission is hereby granted to use, modify, and distribute this file
  * in accordance with the terms of the license agreement accompanying it.
  */
 
@@ -13,7 +13,7 @@ package org.swiftsuspenders
 	import flash.utils.describeType;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
-	
+
 	import org.swiftsuspenders.injectionpoints.ConstructorInjectionPoint;
 	import org.swiftsuspenders.injectionpoints.InjectionPoint;
 	import org.swiftsuspenders.injectionpoints.MethodInjectionPoint;
@@ -37,8 +37,8 @@ package org.swiftsuspenders
 		private var m_constructorInjectionPoints : Dictionary;
 		private var m_attendedToInjectees : Dictionary;
 		private var m_xmlMetadata : XML;
-		
-		
+
+
 		/*******************************************************************************************
 		*								public methods											   *
 		*******************************************************************************************/
@@ -50,14 +50,14 @@ package org.swiftsuspenders
 			m_attendedToInjectees = new Dictionary(true);
 			m_xmlMetadata = xmlConfig;
 		}
-		
+
 		public function mapValue(whenAskedFor : Class, useValue : Object, named : String = "") : *
 		{
 			var config : InjectionConfig = getMapping(whenAskedFor, named);
 			config.setResult(new InjectValueResult(useValue));
 			return config;
 		}
-		
+
 		public function mapClass(
 				whenAskedFor : Class, instantiateClass : Class, named : String = "") : *
 		{
@@ -65,12 +65,12 @@ package org.swiftsuspenders
 			config.setResult(new InjectClassResult(instantiateClass));
 			return config;
 		}
-		
+
 		public function mapSingleton(whenAskedFor : Class, named : String = "") : *
 		{
 			return mapSingletonOf(whenAskedFor, whenAskedFor, named);
 		}
-		
+
 		public function mapSingletonOf(
 			whenAskedFor : Class, useSingletonOf : Class, named : String = "") : *
 		{
@@ -78,14 +78,14 @@ package org.swiftsuspenders
 			config.setResult(new InjectSingletonResult(useSingletonOf));
 			return config;
 		}
-		
+
 		public function mapRule(whenAskedFor : Class, useRule : *, named : String = "") : *
 		{
 			var config : InjectionConfig = getMapping(whenAskedFor, named);
 			config.setResult(new InjectOtherRuleResult(useRule));
 			return useRule;
 		}
-		
+
 		public function getMapping(whenAskedFor : Class, named : String = "") : InjectionConfig
 		{
 			var requestName : String = getQualifiedClassName(whenAskedFor);
@@ -97,7 +97,7 @@ package org.swiftsuspenders
 			}
 			return config;
 		}
-		
+
 		public function injectInto(target : Object) : void
 		{
 			if (m_attendedToInjectees[target])
@@ -105,23 +105,23 @@ package org.swiftsuspenders
 				return;
 			}
 			m_attendedToInjectees[target] = true;
-			
+
 			//get injection points or cache them if this target's class wasn't encountered before
 			var injectionPoints : Array;
-			
+
 			var ctor : Class = getConstructor(target);
-			
+
 			injectionPoints = m_injectionPointLists[ctor] || getInjectionPoints(ctor);
-			
+
 			var length : int = injectionPoints.length;
 			for (var i : int = 0; i < length; i++)
 			{
 				var injectionPoint : InjectionPoint = injectionPoints[i];
 				injectionPoint.applyInjection(target, this);
 			}
-			
+
 		}
-		
+
 		public function instantiate(clazz:Class):*
 		{
 			var injectionPoint : InjectionPoint = m_constructorInjectionPoints[clazz];
@@ -134,7 +134,7 @@ package org.swiftsuspenders
 			injectInto(instance);
 			return instance;
 		}
-		
+
 		public function unmap(clazz : Class, named : String = "") : void
 		{
 			var mapping : InjectionConfig = getConfigurationForRequest(clazz, named);
@@ -168,7 +168,7 @@ package org.swiftsuspenders
 			}
 			return mapping.getResponse(this);
 		}
-		
+
 		public function createChildInjector(applicationDomain:ApplicationDomain=null) : Injector
 		{
 			var injector : Injector = new Injector();
@@ -176,12 +176,12 @@ package org.swiftsuspenders
 			injector.setParentInjector(this);
 			return injector;
 		}
-        
+
         public function setApplicationDomain(applicationDomain:ApplicationDomain):void
         {
             m_applicationDomain = applicationDomain;
         }
-        
+
         public function getApplicationDomain():ApplicationDomain
         {
             return m_applicationDomain ? m_applicationDomain : ApplicationDomain.currentDomain;
@@ -201,13 +201,13 @@ package org.swiftsuspenders
 				m_attendedToInjectees = parentInjector.attendedToInjectees;
 			}
 		}
-		
+
 		public function getParentInjector() : Injector
 		{
 			return m_parentInjector;
 		}
-		
-		
+
+
 		/*******************************************************************************************
 		*								internal methods										   *
 		*******************************************************************************************/
@@ -233,7 +233,7 @@ package org.swiftsuspenders
 			return m_attendedToInjectees;
 		}
 
-		
+
 		/*******************************************************************************************
 		*								private methods											   *
 		*******************************************************************************************/
@@ -244,20 +244,20 @@ package org.swiftsuspenders
 			m_injectionPointLists[clazz] = injectionPoints;
 			m_injectionPointLists[description.@name.toString()] = injectionPoints;
 			var node : XML;
-			
+
 			// This is where we have to wire in the XML...
 			if(m_xmlMetadata)
 			{
 				createInjectionPointsFromConfigXML(description);
 				addParentInjectionPoints(description, injectionPoints);
 			}
-			
+
 			var injectionPoint : InjectionPoint;
 			//get constructor injections
 			node = description.factory.constructor[0];
 			if (node)
 			{
-				m_constructorInjectionPoints[clazz] = 
+				m_constructorInjectionPoints[clazz] =
 					new ConstructorInjectionPoint(node, clazz, this);
 			}
 			else
@@ -271,14 +271,14 @@ package org.swiftsuspenders
 				injectionPoint = new PropertyInjectionPoint(node, this);
 				injectionPoints.push(injectionPoint);
 			}
-		
+
 			//get injection points for methods
 			for each (node in description.factory.method.metadata.(@name == 'Inject'))
 			{
 				injectionPoint = new MethodInjectionPoint(node, this);
 				injectionPoints.push(injectionPoint);
 			}
-			
+
 			//get post construct methods
 			var postConstructMethodPoints : Array = [];
 			for each (node in description.factory.method.metadata.(@name == 'PostConstruct'))
@@ -291,7 +291,7 @@ package org.swiftsuspenders
 				postConstructMethodPoints.sortOn("order", Array.NUMERIC);
 				injectionPoints.push.apply(injectionPoints, postConstructMethodPoints);
 			}
-			
+
 			return injectionPoints;
 		}
 
@@ -307,17 +307,17 @@ package org.swiftsuspenders
 			}
 			return config;
 		}
-		
+
 		private function createInjectionPointsFromConfigXML(description : XML) : void
 		{
 			var node : XML;
-			//first, clear out all "Inject" metadata, we want a clean slate to have the result 
+			//first, clear out all "Inject" metadata, we want a clean slate to have the result
 			//work the same in the Flash IDE and MXMLC
 			for each (node in description..metadata.(@name=='Inject' || @name=='PostConstruct'))
 			{
 				delete node.parent().metadata.(@name=='Inject' || @name=='PostConstruct')[0];
 			}
-			
+
 			//now, we create the new injection points based on the given xml file
 			var className:String = description.factory.@type;
 			for each (node in m_xmlMetadata.type.(@name == className).children())
@@ -360,7 +360,7 @@ package org.swiftsuspenders
 				typeNode.appendChild(metaNode);
 			}
 		}
-		
+
 		private function addParentInjectionPoints(description : XML, injectionPoints : Array) : void
 		{
 			var parentClassName : String = description.factory.extendsClass.@type[0];
@@ -368,7 +368,7 @@ package org.swiftsuspenders
 			{
 				return;
 			}
-			var parentInjectionPoints : Array = m_injectionPointLists[parentClassName] || 
+			var parentInjectionPoints : Array = m_injectionPointLists[parentClassName] ||
 					getInjectionPoints(Class(getDefinitionByName(parentClassName)));
 			injectionPoints.push.apply(injectionPoints, parentInjectionPoints);
 		}

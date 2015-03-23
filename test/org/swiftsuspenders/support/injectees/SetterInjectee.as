@@ -27,7 +27,7 @@ package org.swiftsuspenders.support.injectees
 	public class SetterInjectee
 	{
 		private var m_property : Clazz;
-		
+
 		[Inject]
 		public function set property(value:Clazz) : void
 		{
@@ -37,7 +37,7 @@ package org.swiftsuspenders.support.injectees
 		{
 			return m_property;
 		}
-		
+
 		public function SetterInjectee()
 		{
 		}

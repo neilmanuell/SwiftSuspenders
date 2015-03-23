@@ -11,7 +11,7 @@ package org.swiftsuspenders.support.injectees
 	{
 		[Inject]
 		public var property:String;
-		
+
 		public function StringInjectee()
 		{
 		}

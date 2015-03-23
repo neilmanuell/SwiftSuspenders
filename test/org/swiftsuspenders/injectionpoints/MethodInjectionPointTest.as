@@ -2,7 +2,7 @@ package  org.swiftsuspenders.injectionpoints
 {
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
-	
+
 	import org.flexunit.Assert;
 	import org.swiftsuspenders.InjectionConfig;
 	import org.swiftsuspenders.InjectionType;
@@ -20,27 +20,27 @@ package  org.swiftsuspenders.injectionpoints
 		public function injectionOfTwoUnnamedPropertiesIntoMethod():void
 		{
 			var injectee:TwoParametersMethodInjectee = applyMethodInjectionToUnnamedTwoParameterInjectee();
-			
-			Assert.assertTrue("dependency 1 should be Clazz instance", injectee.getDependency() is Clazz);		
-			Assert.assertTrue("dependency 2 should be Interface", injectee.getDependency2() is Interface);	
+
+			Assert.assertTrue("dependency 1 should be Clazz instance", injectee.getDependency() is Clazz);
+			Assert.assertTrue("dependency 2 should be Interface", injectee.getDependency2() is Interface);
 		}
 		[Test]
 		public function injectionOfOneRequiredOneOptionalPropertyIntoMethod():void
 		{
 			var injectee:OneRequiredOneOptionalPropertyMethodInjectee = applyMethodInjectionToOneRequiredOneOptionalPropertyIntoMethod();
-			
-			Assert.assertTrue("dependency 1 should be Clazz instance", injectee.getDependency() is Clazz);		
-			Assert.assertTrue("dependency 2 should be null", injectee.getDependency2() == null);	
+
+			Assert.assertTrue("dependency 1 should be Clazz instance", injectee.getDependency() is Clazz);
+			Assert.assertTrue("dependency 2 should be null", injectee.getDependency2() == null);
 		}
-		
+
 		private function applyMethodInjectionToUnnamedTwoParameterInjectee():TwoParametersMethodInjectee
 		{
 			var injectee:TwoParametersMethodInjectee = new TwoParametersMethodInjectee();
 			var injector:Injector = new Injector();
 			var injectionPoint:MethodInjectionPoint = createTwoPropertySingletonClazzAndInterfaceMethodInjectionPoint();
-			
+
 			injectionPoint.applyInjection(injectee, injector);
-			
+
 			return injectee;
 		}
 
@@ -51,15 +51,15 @@ package  org.swiftsuspenders.injectionpoints
 			var injectionPoint:MethodInjectionPoint = new MethodInjectionPoint(node, injector);
 			return injectionPoint;
 		}
-		
+
 		private function applyMethodInjectionToOneRequiredOneOptionalPropertyIntoMethod():OneRequiredOneOptionalPropertyMethodInjectee
 		{
 			var injector:Injector = new Injector();
 			var injectee:OneRequiredOneOptionalPropertyMethodInjectee = new OneRequiredOneOptionalPropertyMethodInjectee();
 			var injectionPoint:MethodInjectionPoint = createOneRequiredOneOptionalPropertySingletonClazzAndInterfaceMethodInjectionPoint();
-			
+
 			injectionPoint.applyInjection(injectee, injector);
-			
+
 			return injectee;
 		}
 
@@ -70,21 +70,21 @@ package  org.swiftsuspenders.injectionpoints
 			var injectionPoint:MethodInjectionPoint = new MethodInjectionPoint(node, injector);
 			return injectionPoint;
 		}
-		
+
 		private function createUnnamedTwoPropertyPropertySingletonInjectionInjector() : Injector
 		{
 			var injector:Injector = new Injector();
 			injector.mapSingleton(Clazz);
 			injector.mapSingletonOf(Interface, Clazz);
-			
+
 			return injector;
 		}
-		
+
 		private function createUnnamedPropertySingletonInjectionInjector() : Injector
 		{
 			var injector:Injector = new Injector();
 			injector.mapSingleton(Clazz);
-			
+
 			return injector;
 		}
 	}
